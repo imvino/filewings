@@ -1,7 +1,7 @@
 # Sign In using google and file uploader
 
 
-This project provides a simple web application for users to authenticate using their Google accounts and upload any kind of file to either a private AWS S3 bucket. 
+This project provides a simple web application for users to authenticate using their Google accounts and upload any kind of file to private AWS S3 bucket. 
 <br/>The application is built using React and Node.js, and leverages the AWS SDK for S3 communication.
 <br/><br/><br/><br/>
 <b>Screenshot</b><br/><br/>
