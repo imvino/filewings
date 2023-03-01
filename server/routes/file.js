@@ -34,7 +34,7 @@ const client = new S3Client({
 
 // List user file details
 router.route('/list').post(async (req, res, next) => {
-  // Check token before inserting
+  // Check token before listing
   let result = await verifyGoogleToken(res, req.headers?.authorization);
   if (result?.email) {
     try {
@@ -61,6 +61,7 @@ router.route('/list').post(async (req, res, next) => {
 });
 
 router.route('/delete').post(async (req, res, next) => {
+  // Check token before deleting
   let result = await verifyGoogleToken(res, req.headers?.authorization);
   if (result?.email) {
     try {
