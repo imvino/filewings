@@ -5,17 +5,18 @@ const googleClient = new OAuth2Client({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 });
 
-const verifyGoogleToken = async (res, authorization) => {
+const verifyGoogleToken = async (req, res, next) => {
   try {
     const ticket = await googleClient.verifyIdToken({
-      idToken: authorization.includes('Bearer')
-        ? authorization.split(' ')[1]
-        : authorization,
+      idToken: req.headers.authorization.includes('Bearer')
+        ? req.headers.authorization.split(' ')[1]
+        : req.headers.authorization,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
-    return payload;
+    req.user = payload; // add the user information to the request object
+    next(); // call the next middleware
   } catch (error) {
     console.error('Error verifying Google access token:', error);
     return res.status(401).json({ message: 'UNAUTHORIZED_REQUEST' });

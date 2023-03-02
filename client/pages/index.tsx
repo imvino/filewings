@@ -74,8 +74,14 @@ export default function Dashboard() {
     // Render table array
     function dateConv(d) {
         const date = new Date(d);
-        const formattedDate = date.toLocaleString();
-        return (formattedDate);
+        return new Intl.DateTimeFormat('en-US', {
+            day: '2-digit',
+            month: 'short',
+            year: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        }).format(date);
     }
     const rows = data?.map((item, i) => (
         <tr key={i}>
